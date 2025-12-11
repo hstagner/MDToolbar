@@ -15,29 +15,24 @@ MDToolbar is a small Sublime Text package that adds a popup Markdown formatting 
   - Blockquote: prefixes selected lines with `> `
 
 - Commands for each action so you can bind your own keys without using the toolbar.
-
 ## Installation
 
-### Via Package Control (recommended)
+### Package Control (recommended)
 
-1. Ensure Package Control is installed in Sublime Text.
-2. Open the Command Palette (`Ctrl+Shift+P` on Windows/Linux, `Cmd+Shift+P` on macOS).
-3. Run: **“Package Control: Install Package”**.
-4. When the package list appears, type **`MDToolbar`** and select it.
-5. After installation, restart Sublime Text if needed.
+1. Ensure Package Control is installed in Sublime Text.  
+2. Open the Command Palette (`Ctrl+Shift+P` on Windows/Linux, `Cmd+Shift+P` on macOS) and run **“Package Control: Add Repository”**.  
+3. Paste this URL and confirm:
 
-If the package is not yet in the default channel but is hosted on your own repository, you can:
+   `https://github.com/hstagner/MDToolbar`
 
-1. Open the Command Palette.
-2. Run **“Package Control: Add Repository”** and paste the Git repository URL for MDToolbar.
-3. Then run **“Package Control: Install Package”** and choose **`MDToolbar`**.
+4. Open the Command Palette again and run **“Package Control: Install Package”**.  
+5. Type **`MDToolbar`**, select it from the list, and install.  
+6. Restart Sublime Text if needed, then customize key bindings in `Preferences → Key Bindings` if desired.
 
 ### Manual installation
 
-1. Clone or copy this repository into your Sublime `Packages` directory as `MDToolbar`.
-2. Restart Sublime Text.
-
-The package will load automatically and the default key bindings will be active for your platform.
+1. Clone or download this repository into your Sublime `Packages` directory as a folder named `MDToolbar`.  
+2. Restart Sublime Text; the package and its default key bindings will load automatically.
 
 ## Usage
 
