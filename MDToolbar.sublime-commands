@@ -1,0 +1,38 @@
+[
+    {
+        "caption": "MDToolbar: Show Markdown Toolbar",
+        "command": "md_toolbar"
+    },
+    {
+        "caption": "MDToolbar: Bold Selection",
+        "command": "md_toolbar_bold"
+    },
+    {
+        "caption": "MDToolbar: Italic Selection",
+        "command": "md_toolbar_italic"
+    },
+    {
+        "caption": "MDToolbar: Bold+Italic Selection",
+        "command": "md_toolbar_bold_italic"
+    },
+    {
+        "caption": "MDToolbar: Code Selection",
+        "command": "md_toolbar_code"
+    },
+    {
+        "caption": "MDToolbar: Strikethrough Selection",
+        "command": "md_toolbar_strike"
+    },
+    {
+        "caption": "MDToolbar: Link Selection",
+        "command": "md_toolbar_link"
+    },
+    {
+        "caption": "MDToolbar: Image Selection",
+        "command": "md_toolbar_image"
+    },
+    {
+        "caption": "MDToolbar: Blockquote Selection",
+        "command": "md_toolbar_blockquote"
+    }
+]

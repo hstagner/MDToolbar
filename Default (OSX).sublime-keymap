@@ -1,0 +1,18 @@
+[
+    {
+        "keys": ["ctrl+super+m"],
+        "command": "md_toolbar",
+        "context": [
+            { "key": "selection_empty", "operator": "equal", "operand": false }
+        ]
+    },
+
+    { "keys": ["ctrl+super+b"], "command": "md_toolbar_bold" },
+    { "keys": ["ctrl+super+i"], "command": "md_toolbar_italic" },
+    { "keys": ["ctrl+super+d"], "command": "md_toolbar_bold_italic" },
+    { "keys": ["ctrl+super+c"], "command": "md_toolbar_code" },
+    { "keys": ["ctrl+super+x"], "command": "md_toolbar_strike" },
+    { "keys": ["ctrl+super+l"], "command": "md_toolbar_link" },
+    { "keys": ["ctrl+super+p"], "command": "md_toolbar_image" },
+    { "keys": ["ctrl+super+q"], "command": "md_toolbar_blockquote" }
+]

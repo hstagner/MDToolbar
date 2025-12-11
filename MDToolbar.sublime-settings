@@ -1,0 +1,12 @@
+{
+    "enabled_actions": [
+        "bold",
+        "italic",
+        "bold_italic",
+        "code",
+        "strike",
+        "link",
+        "image",
+        "blockquote"
+    ]
+}
