@@ -16,6 +16,29 @@ MDToolbar is a small Sublime Text package that adds a popup Markdown formatting 
 
 - Commands for each action so you can bind your own keys without using the toolbar.
 
+## Installation
+
+### Via Package Control (recommended)
+
+1. Ensure Package Control is installed in Sublime Text.
+2. Open the Command Palette (`Ctrl+Shift+P` on Windows/Linux, `Cmd+Shift+P` on macOS).
+3. Run: **“Package Control: Install Package”**.
+4. When the package list appears, type **`MDToolbar`** and select it.
+5. After installation, restart Sublime Text if needed.
+
+If the package is not yet in the default channel but is hosted on your own repository, you can:
+
+1. Open the Command Palette.
+2. Run **“Package Control: Add Repository”** and paste the Git repository URL for MDToolbar.
+3. Then run **“Package Control: Install Package”** and choose **`MDToolbar`**.
+
+### Manual installation
+
+1. Clone or copy this repository into your Sublime `Packages` directory as `MDToolbar`.
+2. Restart Sublime Text.
+
+The package will load automatically and the default key bindings will be active for your platform.
+
 ## Usage
 
 1. Select some text in a Markdown buffer.
@@ -65,15 +88,6 @@ All commands are available from the Command Palette:
 - `MDToolbar: Link Selection`
 - `MDToolbar: Image Selection`
 - `MDToolbar: Blockquote Selection`
-
-## Installation
-
-For manual installation:
-
-1. Clone or copy this repository into your Sublime `Packages` directory as `MDToolbar`.
-2. Restart Sublime Text.
-
-The package will load automatically and the default key bindings will be active for your platform.
 
 ## Configuration
 
