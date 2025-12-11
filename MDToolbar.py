@@ -16,16 +16,18 @@ BUTTONS = [
 def wrap_selection(view, edit, wrapper_type):
     """
     Apply a Markdown wrapper to all non-empty selections in the view,
-    then place the caret at the end of each wrapped region.
+    then place the caret at the end of each wrapped region with no selection.
     """
-    carets = []
+    new_carets = []
 
+    # Work on a copy of the selection list
     for region in list(view.sel()):
         if region.empty():
             continue
 
-        original_region = sublime.Region(region.begin(), region.end())
-        text = view.substr(original_region)
+        # Work with a stable region, independent of future edits
+        target = sublime.Region(region.begin(), region.end())
+        text = view.substr(target)
 
         if wrapper_type == "bold":
             new = "**{}**".format(text)
@@ -42,28 +44,27 @@ def wrap_selection(view, edit, wrapper_type):
         elif wrapper_type == "image":
             new = "![{}](url)".format(text)
         elif wrapper_type == "blockquote":
-            lines = view.lines(original_region)
+            lines = view.lines(target)
             pieces = []
             for line in lines:
                 line_text = view.substr(line)
                 pieces.append("> " + line_text.lstrip())
             new = "\n".join(pieces)
-            original_region = sublime.Region(lines[0].begin(), lines[-1].end())
+            target = sublime.Region(lines[0].begin(), lines[-1].end())
         else:
             continue
 
-        view.replace(edit, original_region, new)
+        view.replace(edit, target, new)
 
-        # Caret at end of inserted text
-        end_pt = original_region.begin() + len(new)
-        carets.append(sublime.Region(end_pt, end_pt))
+        # Zero-length region = caret only, no selection
+        end_pt = target.begin() + len(new)
+        new_carets.append(sublime.Region(end_pt))
 
-    if carets:
+    if new_carets:
         sels = view.sel()
         sels.clear()
-        for c in carets:
-            sels.add(c)
-
+        for caret in new_carets:
+            sels.add(caret)
 
 
 class MdToolbarCommand(sublime_plugin.TextCommand):
