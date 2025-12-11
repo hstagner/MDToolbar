@@ -16,16 +16,14 @@ BUTTONS = [
 def wrap_selection(view, edit, wrapper_type):
     """
     Apply a Markdown wrapper to all non-empty selections in the view,
-    then place the caret at the end of each wrapped region with no selection.
+    then place the caret at the end of each wrapped region (no selection).
     """
     new_carets = []
 
-    # Work on a copy of the selection list
     for region in list(view.sel()):
         if region.empty():
             continue
 
-        # Work with a stable region, independent of future edits
         target = sublime.Region(region.begin(), region.end())
         text = view.substr(target)
 
@@ -56,7 +54,6 @@ def wrap_selection(view, edit, wrapper_type):
 
         view.replace(edit, target, new)
 
-        # Zero-length region = caret only, no selection
         end_pt = target.begin() + len(new)
         new_carets.append(sublime.Region(end_pt))
 
@@ -65,6 +62,18 @@ def wrap_selection(view, edit, wrapper_type):
         sels.clear()
         for caret in new_carets:
             sels.add(caret)
+
+
+def _clear_to_single_caret(view):
+    """
+    Final cleanup: ensure only a single caret exists, no selection.
+    """
+    sels = view.sel()
+    if len(sels) == 0:
+        return
+    last_pt = sels[-1].end()
+    sels.clear()
+    sels.add(sublime.Region(last_pt))
 
 
 class MdToolbarCommand(sublime_plugin.TextCommand):
@@ -108,43 +117,52 @@ class MdToolbarApplyCommand(sublime_plugin.TextCommand):
 
     def run(self, edit, action):
         wrap_selection(self.view, edit, action)
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarBoldCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "bold")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarItalicCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "italic")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarBoldItalicCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "bold_italic")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarCodeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "code")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarStrikeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "strike")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarLinkCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "link")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarImageCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "image")
+        _clear_to_single_caret(self.view)
 
 
 class MdToolbarBlockquoteCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         wrap_selection(self.view, edit, "blockquote")
+        _clear_to_single_caret(self.view)
