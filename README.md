@@ -2,6 +2,8 @@
 
 MDToolbar is a small Sublime Text package that adds a popup Markdown formatting toolbar and matching keybindings for common inline Markdown constructs.
 
+![MDToolbar Example](images/MDToolbar-example.png)
+
 ## Features
 
 - Popup toolbar shown near the selection with buttons for:
