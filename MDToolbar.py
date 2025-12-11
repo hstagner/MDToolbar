@@ -15,13 +15,17 @@ BUTTONS = [
 
 def wrap_selection(view, edit, wrapper_type):
     """
-    Apply a Markdown wrapper to all non-empty selections in the view.
+    Apply a Markdown wrapper to all non-empty selections in the view,
+    then place the caret at the end of each wrapped region.
     """
+    carets = []
+
     for region in list(view.sel()):
         if region.empty():
             continue
 
-        text = view.substr(region)
+        original_region = sublime.Region(region.begin(), region.end())
+        text = view.substr(original_region)
 
         if wrapper_type == "bold":
             new = "**{}**".format(text)
@@ -38,17 +42,28 @@ def wrap_selection(view, edit, wrapper_type):
         elif wrapper_type == "image":
             new = "![{}](url)".format(text)
         elif wrapper_type == "blockquote":
-            lines = view.lines(region)
+            lines = view.lines(original_region)
             pieces = []
             for line in lines:
                 line_text = view.substr(line)
                 pieces.append("> " + line_text.lstrip())
             new = "\n".join(pieces)
-            region = sublime.Region(lines[0].begin(), lines[-1].end())
+            original_region = sublime.Region(lines[0].begin(), lines[-1].end())
         else:
             continue
 
-        view.replace(edit, region, new)
+        view.replace(edit, original_region, new)
+
+        # Caret at end of inserted text
+        end_pt = original_region.begin() + len(new)
+        carets.append(sublime.Region(end_pt, end_pt))
+
+    if carets:
+        sels = view.sel()
+        sels.clear()
+        for c in carets:
+            sels.add(c)
+
 
 
 class MdToolbarCommand(sublime_plugin.TextCommand):
